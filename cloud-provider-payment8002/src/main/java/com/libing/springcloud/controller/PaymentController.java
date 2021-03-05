@@ -27,7 +27,7 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-    @Resource
+//    @Resource
     private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payment/create")
@@ -52,7 +52,7 @@ public class PaymentController {
             return new CommonResult(444, "没有对应记录,查询ID: " + id, null);
         }
     }
-
+//
 //    @GetMapping(value = "/payment/discovery")
 //    public Object discovery() {
 //        List<String> services = discoveryClient.getServices();
