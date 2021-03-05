@@ -18,7 +18,8 @@ public class OrderController {
     @Autowired
     RestTemplate restTemplate;
 
-    private static final String LOCAL_URL="http://localhost:8001";
+//    private static final String LOCAL_URL="http://localhost:8001";
+    private static final String LOCAL_URL="http://CLOUD-PAYMENT-SERVICE";
 
     @PostMapping("/consumer/payment/create")
     public CommonResult<Payment> createPayment(@RequestBody Payment payment){
