@@ -17,6 +17,7 @@
         <module>coud-eureka-service7001</module>
         <module>cloud-eureka-service7002</module>
         <module>cloud-provider-payment8002</module>
+        <module>cloud-provide-service8004</module>
     </modules>
 
     <properties>
