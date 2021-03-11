@@ -15,7 +15,7 @@ public class PaymentController {
     @Value("${server.port}")
     private String port;
 
-    @GetMapping(value = "/paymentzk")
+    @GetMapping(value = "/payment/zk")
     public String paymentZk() {
         return "这个zk端口" + port + "\t" + UUID.randomUUID().toString();
     }
