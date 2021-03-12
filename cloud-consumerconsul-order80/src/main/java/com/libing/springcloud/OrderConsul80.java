@@ -1,0 +1,19 @@
+package com.libing.springcloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+import javax.swing.*;
+
+/**
+ * @author libing
+ * @create 2021-03-11 21:26
+ */
+@SpringBootApplication
+@EnableDiscoveryClient
+public class OrderConsul80 {
+    public static void main(String[] args) {
+        SpringApplication.run(OrderConsul80.class,args);
+    }
+}

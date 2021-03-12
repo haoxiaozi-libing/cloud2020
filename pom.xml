@@ -20,6 +20,8 @@
         <module>cloud-provide-service8004</module>
         <module>cloud-consumerzk-order80</module>
         <module>cloud-providerzk-payment8004</module>
+        <module>cloud-providerconsul-payment8006</module>
+        <module>cloud-consumerconsul-order80</module>
     </modules>
 
     <properties>
