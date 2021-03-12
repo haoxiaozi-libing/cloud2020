@@ -27,7 +27,7 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-//    @Resource
+    @Resource
     private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payment/create")
@@ -68,6 +68,7 @@ public class PaymentController {
         return this.discoveryClient;
     }
 
+    // 自定义轮询算法
     @GetMapping(value = "/payment/lb")
     public String getPaymentLB() {
         return serverPort;

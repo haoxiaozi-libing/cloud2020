@@ -67,11 +67,12 @@ public class PaymentController {
 
         return this.discoveryClient;
     }
-//
-//    @GetMapping(value = "/payment/lb")
-//    public String getPaymentLB() {
-//        return serverPort;
-//    }
+
+    // 自定义轮询算法
+    @GetMapping(value = "/payment/lb")
+    public String getPaymentLB() {
+        return serverPort;
+    }
 //
 //    @GetMapping(value = "/payment/feign/timeout")
 //    public String paymentFeignTimeout() {
