@@ -24,19 +24,16 @@ public class PaymentService {
         return "线程池:  " + Thread.currentThread().getName() + "  paymentInfo_OK,id:  " + id + "\t" + "O(∩_∩)O哈哈~";
     }
 
-//    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
-//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
-//    })
 
-    @HystrixCommand(fallbackMethod="paymentInfo_TimeOutHandler",commandProperties ={
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")} )
-    public String paymentInfo_TimeOut(Integer id) {
-        //int age = 10/0;
-        try {
-            TimeUnit.MILLISECONDS.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
+//            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+
+
+    @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+    public String paymentInfo_TimeOut(Integer id) throws InterruptedException {
+        int num = 5;
+        TimeUnit.MILLISECONDS.sleep(5000);
         return "线程池:  " + Thread.currentThread().getName() + " id:  " + id + "\t" + "O(∩_∩)O哈哈~" + "  耗时(秒): ";
     }
 
