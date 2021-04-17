@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @create 2021-03-19 22:13
  */
 @RestController
-@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
+//@DefaultProperties(defaultFallback = "payment_Global_FallbackMethod")
 public class ConsumerHystrixApi {
     @Autowired
     ConsumerHystrixClient consumerHystrixClient;
