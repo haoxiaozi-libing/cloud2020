@@ -30,35 +30,36 @@ public class PaymentService {
 
 
     @HystrixCommand(fallbackMethod = "paymentInfo_TimeOutHandler", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "3000")})
+            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")})
     public String paymentInfo_TimeOut(Integer id) throws InterruptedException {
-        int num = 5;
-        TimeUnit.MILLISECONDS.sleep(5000);
-        return "线程池:  " + Thread.currentThread().getName() + " id:  " + id + "\t" + "O(∩_∩)O哈哈~" + "  耗时(秒): ";
+        long start = System.currentTimeMillis();
+        Thread.sleep(3000);
+        long end = System.currentTimeMillis() - start;
+        return "服务端8001 线程池:  " + Thread.currentThread().getName() + " id:  " + id + "\t" + "O(∩_∩)O哈哈~" + "  耗时(秒): " + start;
     }
 
     public String paymentInfo_TimeOutHandler(Integer id) {
-        return "线程池:  " + Thread.currentThread().getName() + "  8001系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
+        return "降级机制开启了   线程池:  " + Thread.currentThread().getName() + "  8001系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
     }
-
-    //=====服务熔断
-    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
-            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),// 是否开启断路器
-            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),// 请求次数
-            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 时间窗口期
-            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),// 失败率达到多少后跳闸
-    })
-    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
-        if (id < 0) {
-            throw new RuntimeException("******id 不能负数");
-        }
-        String serialNumber = IdUtil.simpleUUID();
-
-        return Thread.currentThread().getName() + "\t" + "调用成功，流水号: " + serialNumber;
-    }
-
-    public String paymentCircuitBreaker_fallback(@PathVariable("id") Integer id) {
-        return "id 不能负数，请稍后再试，/(ㄒoㄒ)/~~   id: " + id;
-    }
+//
+//    //=====服务熔断
+//    @HystrixCommand(fallbackMethod = "paymentCircuitBreaker_fallback", commandProperties = {
+//            @HystrixProperty(name = "circuitBreaker.enabled", value = "true"),// 是否开启断路器
+//            @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "10"),// 请求次数
+//            @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"), // 时间窗口期
+//            @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "60"),// 失败率达到多少后跳闸
+//    })
+//    public String paymentCircuitBreaker(@PathVariable("id") Integer id) {
+//        if (id < 0) {
+//            throw new RuntimeException("******id 不能负数");
+//        }
+//        String serialNumber = IdUtil.simpleUUID();
+//
+//        return Thread.currentThread().getName() + "\t" + "调用成功，流水号: " + serialNumber;
+//    }
+//
+//    public String paymentCircuitBreaker_fallback(@PathVariable("id") Integer id) {
+//        return "id 不能负数，请稍后再试，/(ㄒoㄒ)/~~   id: " + id;
+//    }
 
 }

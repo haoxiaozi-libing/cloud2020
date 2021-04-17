@@ -17,5 +17,5 @@ public interface ConsumerHystrixClient {
     public String paymentInfo_OK(@PathVariable("id") Integer id);
 
     @GetMapping("/payment/hystrix/timeout/{id}")
-    String paymentInfo_TimeOut(Integer id);
+    String paymentInfo_TimeOut(@PathVariable("id") Integer id);
 }

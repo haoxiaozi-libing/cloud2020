@@ -11,10 +11,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author libing
  * @create 2021-03-19 22:09
  */
-
+//@EnableEurekaClient  为什么不标注；
 @SpringBootApplication
 @EnableFeignClients
-//@EnableEurekaClient  为什么不标注；
 @EnableHystrix
 public class ConsumerHystrix80 {
 
