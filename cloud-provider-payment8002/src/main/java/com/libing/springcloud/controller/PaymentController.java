@@ -71,6 +71,7 @@ public class PaymentController {
     // 自定义轮询算法
     @GetMapping(value = "/payment/lb")
     public String getPaymentLB() {
+        log.info("这个是8002开始执行了。。。。。。。。。。。。。");
         return serverPort;
     }
 
