@@ -22,6 +22,12 @@ public class PaymentFeignApi {
         CommonResult<Payment> paymentById = paymentFeignClient.getPaymentById(id);
 
         return paymentById;
+    }
 
+    // ====================> zipkin+sleuth
+    @GetMapping("/consumer/payment/zipkin")
+    public String paymentZipkin() {
+        String result = paymentFeignClient.getZK();
+        return result;
     }
 }

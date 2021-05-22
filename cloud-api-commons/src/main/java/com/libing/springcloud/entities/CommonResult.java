@@ -1,6 +1,5 @@
 package com.libing.springcloud.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
  * @create 2021-03-01 22:14
  */
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class CommonResult<T> {
 
@@ -17,8 +15,9 @@ public class CommonResult<T> {
     private String message;
     private T result;
 
-    public CommonResult(Integer code, String message) {
+    public CommonResult(Integer code, String message,T result) {
         this.code = code;
         this.message = message;
+        this.result=result;
     }
 }
