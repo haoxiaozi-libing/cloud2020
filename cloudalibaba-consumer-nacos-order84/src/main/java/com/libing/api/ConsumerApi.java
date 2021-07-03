@@ -20,14 +20,14 @@ public class ConsumerApi {
     private ConsumerClient consumerClient;
 
     @GetMapping("/consumer/fallback/{id}")
-    //@SentinelResource(value = "fallback") //没有配置
-    //@SentinelResource(value = "fallback",fallback = "handlerFallback") //fallback只负责业务异常
-    //@SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentinel控制台配置违规
-    @SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler",
-            exceptionsToIgnore = {IllegalArgumentException.class})
+//    @SentinelResource(value = "fallback") //没有配置
+//    @SentinelResource(value = "fallback",fallback = "handlerFallback") //fallback只负责业务异常
+//    @SentinelResource(value = "fallback",blockHandler = "blockHandler") //blockHandler只负责sentinel控制台配置违规
+    @SentinelResource(value = "fallback", fallback = "handlerFallback", blockHandler = "blockHandler"
+            /*exceptionsToIgnore = {IllegalArgumentException.class}*/)
     public CommonResult<Payment> fallback(@PathVariable Long id) {
         CommonResult<Payment> paymentCommonResult = consumerClient.paymentSQL(id);
-        Payment result = paymentCommonResult.getResult();
+        Payment result = paymentCommonResult.getResult( );
         if (id == 4) {
             throw new IllegalArgumentException("IllegalArgumentException,非法参数异常....");
         } else if (paymentCommonResult.getResult() == null) {
